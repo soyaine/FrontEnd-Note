@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var total = 0,
+            score = 'B';
+    switch(score){
+        case 'A':
+            total += 30;
+            break;
+        case 'B':
+            total += 20;
+        case 'C':
+            total += 10;
+            break;
+        default:
+            total+= 5;
+    }
+
+    var x=10;
+    function foo(){
+        alert(x);
+    }
+    function bar(){
+        var x=20;
+        foo();
+    }
+    bar();
+
+
+    var a = 1;
+    var func = (function(){
+        var a = 2;
+        return function() {
+            a++;
+            alert(a);
+        }
+    })();
+    func();
+    func();
+
+</script>
+</html>
