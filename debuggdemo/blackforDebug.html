@@ -3,11 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link id="link" href="jdklfj">
 </head>
 <body>
+<div id="elem">欢迎<a href="/profile">Jerry</a>同学!</div>
+<div>
+    <ul><li id="x">实用技能</li><li id="y">高等教育</li></ul>
+</div>
+<button id="btn" disabled></button>
+<form id="form"><input id="userName" name="userName" class="name"></form>
+<div id="user" data-first-name="Wei">aq</div>
+<select id="age"></select>
+<form id="loginx">
+    <div>
+        <label for="name">用户名：</label>
+        <input id="name" name="name" value="4214532748">
+    </div>
+</form>
+<p id="profession"><em id="m">微专业</em>是由<a id="n" href="http://study.163.com">网易云课堂</a>
+    精心打造的职业化课程
+</p>
+<style id="styleEle">
+    .m-nav{font-size: 14px;}
+    .m-nav li{width: 100px;padding-left: 20px;}
+</style>
+
+<div>
+    <h3>
+        <a>乔丹</a>
+    </h3>
+    <p>
+        NBA
+        <em>最伟大</em>
+        的球员
+    </p>
+</div>
 
 </body>
 <script>
+    var xs = document.getElementById("x");
+    var form = document.getElementById("form");
+    var element = document.getElementById("user");
+    var age = document.getElementById("age");
+    var profession = document.getElementById("profession");
+    var loginForm = document.getElementById("loginx");
+    var m = document.getElementById("m");
+    var link = document.getElementById("link");
+    var styleEle = document.getElementById("styleEle");
+    var name = document.getElementById("name");
+
     var total = 0,
             score = 'B';
     switch(score){
@@ -31,7 +75,8 @@
         var x=20;
         foo();
     }
-    bar();
+
+//    bar();
 
 
     var a = 1;
@@ -40,10 +85,132 @@
         return function() {
             a++;
             alert(a);
-        }
-    })();
-    func();
-    func();
+        };
+//    })();
+//    func();
+//    func();
 
+        function getcookie() {
+            var cookie = {};
+            var all = document.cookie;
+            if (all === '') return cookie;
+            var list = all.split('; ');
+            for (var i = 0, len = list.length; i < len; i++) {
+                var item = list[i];
+                var p = item.indexOf('=');
+                var name = item.substring(0, p);
+                name = decodeURIComponent(name);
+                var value = item.substring(p + 1);
+                value = decodeURIComponent(value);
+                cookie[name] = value;
+            }
+            return cookie;
+        }
+
+        var animation = function(ele, attr, from, to) {
+            var distance = Math.abs(to - from);
+            var stepLength = distance/100;
+            var sign = (to - from)/distance;
+            var offset = 0;
+            var step = function(){
+                var tmpOffset = offset + stepLength;
+                if (tmpOffset < distance) {
+                    ele.style[attr] = from + tmpOffset * sign + 'px';
+                    offset = tmpOffset;
+                } else {
+                    ele.style[attr] = to + 'px';
+                    clearInterval(intervalID);
+                }
+            };
+            ele.style[attr] = from + 'px';
+            var intervalID = setInterval(step, 10);
+        };
+
+        var fadeout = function (element) {
+            if (element) {
+
+            }
+        };
+        var step = function(){
+            var tmpOffset = offset + stepLength;
+            if (tmpOffset < distance) {
+                ele.style[attr] = from + tmpOffset * sign + 'px';
+                offset = tmpOffset;
+            } else {
+                ele.style[attr] = to + 'px';
+                clearInterval(intervalID);
+            }
+        };
+
+        function fadeout(ele, opacity, speed) {
+            if (ele) {
+                var v = ele.style.filter.replace("alpha(opacity=", "").replace(")", "") || ele.style.opacity || 100;
+                v < 1 && (v = v * 100);
+                var count = speed / 1000;
+                var avg = (100 - opacity) / count;
+                var timer = null;
+                timer = setInterval(function() {
+                    if (v - avg > opacity) {
+                        v -= avg;
+                        setOpacity(ele, v);
+                    } else {
+                        clearInterval(timer);
+                    }
+                }, 500);
+            }
+
+
+            function fadeOut(elem){
+                var speed = 20;
+                var opacity = 0;
+                //初始化透明度变化值为0
+                var val = 100;
+                //循环将透明值以5递减,即淡出效果 动画时间为1000ms，故
+                (function(){
+                    iBase.SetOpacity(elem, val);
+                    val -= 5;
+                    if (val >= opacity) {
+                        setTimeout(arguments.callee, speed);
+                    }else if (val < 0) {
+                        //元素透明度为0后隐藏元素
+                        elem.style.display = 'none';
+                    }
+                })();
+            }
+
+
+
+</script>
+<script>
+    function initYear(){
+        var yEle = document.getElementById("year");
+        var mEle = document.getElementById("month");
+        var dEle = document.getElementById("date");
+
+        yEle.addEventListener("change", function (e) {
+            // 获取选中的选项
+            var selectedYear = yEle.options[yEle.selectedIndex];
+            // 获取选项的value值，对应为相应年份
+            if (selectedYear == 0) {
+                // 设置月份为初始状态
+                mEle.options[mEle.selectedIndex].selected = false;
+                mEle.options[mEle.firstElementChild].selected = true;
+                // 设置日期为初始状态
+                dEle.options[dEle.selectedIndex].selected = false;
+                dEle.options[dEle.firstElementChild].selected = true;
+            }
+        }, false);
+
+        mEle.addEventListener("change", function (e) {
+            // 获取选中的选项
+            var selectedMonth = mEle.options[mEle.selectedIndex];
+            // 获取选项的value值，对应为相应年份
+            if (selectedMonth == 0) {
+                // 设置日期为初始状态
+                dEle.options[dEle.selectedIndex].selected = false;
+                dEle.options[dEle.firstElementChild].selected = true;
+            }
+        }, false);
+    }
 </script>
 </html>
